@@ -128,6 +128,7 @@ readLoop:
 func (c *client) Do(req *Request) (resp *ResponsePipe, err error) {
 
 	resp = NewResponsePipe()
+	defer req.Close()
 
 	// FIXME: Should run read and write in parallel.
 	//        Specification never said "write before read".
