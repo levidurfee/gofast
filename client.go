@@ -104,6 +104,7 @@ func (c *client) readResponse(resp *ResponsePipe, req *Request) {
 
 	defer c.ReleaseID(req.ID)
 	defer resp.Close()
+	defer req.Close()
 readLoop:
 	for {
 		if err := rec.read(c.conn.rwc); err != nil {
